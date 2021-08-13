@@ -6,14 +6,8 @@ from awsglue.job import Job
 from awsglue.dynamicframe import DynamicFrame
 import boto3
 from pyspark.context import SparkContext
-from pyspark.sql.functions import col, split, mean, udf, struct
+from pyspark.sql.functions import col, udf, struct
 from pyspark.sql.types import *
-# from pyspark.ml.feature import CountVectorizer
-# from pyspark.ml.feature import StringIndexer
-# from pyspark.ml.feature import VectorAssembler
-# from pyspark.ml.feature import StandardScaler
-from pyspark.sql import Row, Column
-import numpy as np
 
 ## @params: [JOB_NAME]
 args = getResolvedOptions(sys.argv, ['JOB_NAME'])
@@ -47,7 +41,6 @@ def OneHot_Encoding(column_name, tmp):
     return tmp
 
 df = OneHot_Encoding("State", df)
-df = OneHot_Encoding("Area Code", df)
 df = OneHot_Encoding("Int'l Plan", df)
 df = OneHot_Encoding("VMail Plan", df)
 

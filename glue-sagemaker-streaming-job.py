@@ -5,7 +5,7 @@ from pyspark.context import SparkContext
 from awsglue.context import GlueContext
 from awsglue.job import Job
 from pyspark.sql import DataFrame, Row
-from pyspark.sql.functions import col, split, mean, udf, struct
+from pyspark.sql.functions import col, udf, struct
 from pyspark.sql.types import *
 import datetime
 from awsglue import DynamicFrame
@@ -23,7 +23,6 @@ job.init(args['JOB_NAME'], args)
 
 ## The main process start here ##
 endpoint_name = "sagemaker-glue-blog-xgboost-churn"
-region = 'us-east-1'
 
 ## Define the One-hot encoding method
 def OneHot_Encoding(column_name, tmp):
@@ -39,7 +38,7 @@ def OneHot_Encoding(column_name, tmp):
 ## Define inference/prediction method via invoking sagemaker endpoint
 def get_prediction(row):
     infer_data = ','.join([str(elem) for elem in list(row)])
-    sagemaker_client = boto3.client('runtime.sagemaker', region)
+    sagemaker_client = boto3.client('runtime.sagemaker', 'us-east-1')
     response = sagemaker_client.invoke_endpoint(EndpointName=endpoint_name, ContentType="text/csv", Body=infer_data)
     result = response["Body"].read()
     result = result.decode("utf-8")
@@ -58,7 +57,6 @@ def processBatch(data_frame, batchId):
         df = datasource0.toDF()
         df = df.drop('Phone','Day Charge', 'Eve Charge', 'Night Charge', 'Intl Charge', 'Churn?').select('State','Account Length','Area Code',"Int'l Plan","VMail Plan","VMail Message","Day Mins","Day Calls","Eve Mins","Eve Calls","Night Mins","Night Calls","Intl Mins","Intl Calls","CustServ Calls")
         df = OneHot_Encoding("State", df)
-        df = OneHot_Encoding("Area Code", df)
         df = OneHot_Encoding("Int'l Plan", df)
         df = OneHot_Encoding("VMail Plan", df)
         # Invoke SageMaker endpoint to do ML prediction
