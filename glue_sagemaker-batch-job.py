@@ -20,8 +20,8 @@ job.init(args['JOB_NAME'], args)
 
 # get job parameter values
 region = 'us-east-1'
-s3_target = 's3://sagemaker-us-east-1-684423739646/sagemaker/DEMO-xgboost-churn/result/'
-s3_source = 's3://sagemaker-us-east-1-684423739646/sagemaker/DEMO-xgboost-churn/churndata/churn.txt'
+s3_target = 's3://sagemaker-us-east-1-<<AWS account number>>/sagemaker/DEMO-xgboost-churn/result/'
+s3_source = 's3://sagemaker-us-east-1-<<AWS account number>>/sagemaker/DEMO-xgboost-churn/churndata/churn.txt'
 endpoint_name = 'sagemaker-glue-blog-xgboost-churn'
 
 # read data from source

@@ -69,7 +69,7 @@ def processBatch(data_frame, batchId):
         day = now.day
         hour = now.hour
         minute = now.minute
-        path_datasink1 = "s3://sagemaker-us-east-1-684423739646/sagemaker/DEMO-xgboost-churn/result-stream" + "/ingest_year=" + "{:0>4}".format(str(year)) + "/ingest_month=" + "{:0>2}".format(str(month)) + "/ingest_day=" + "{:0>2}".format(str(day)) + "/ingest_hour=" + "{:0>2}".format(str(hour)) + "/"
+        path_datasink1 = "s3://sagemaker-us-east-1-<<AWS Account Number>>/sagemaker/DEMO-xgboost-churn/result-stream" + "/ingest_year=" + "{:0>4}".format(str(year)) + "/ingest_month=" + "{:0>2}".format(str(month)) + "/ingest_day=" + "{:0>2}".format(str(day)) + "/ingest_hour=" + "{:0>2}".format(str(hour)) + "/"
         datasink1 = glueContext.write_dynamic_frame.from_options(frame = datasource1, connection_type = "s3", connection_options = {"path": path_datasink1}, format = "csv", transformation_ctx = "datasink1")
-glueContext.forEachBatch(frame = data_frame_datasource0, batch_function = processBatch, options = {"windowSize": "100 seconds", "checkpointLocation": "s3://sagemaker-us-east-1-684423739646/sagemaker/DEMO-xgboost-churn/result-stream/checkpoint/"})
+glueContext.forEachBatch(frame = data_frame_datasource0, batch_function = processBatch, options = {"windowSize": "100 seconds", "checkpointLocation": "s3://sagemaker-us-east-1-<<AWS Account Number>>/sagemaker/DEMO-xgboost-churn/result-stream/checkpoint/"})
 job.commit()
