@@ -1,6 +1,6 @@
-# ML-powered near real-time & batch analytics pipelines on AWS
+# ML-powered near real-time & batch analytics on AWS
 
-In this repo, I will show readers step by step about how to host a machine learning model on a SageMaker endpoint, then create batch and near real-time streaming Glue jobs to invoke the machine learning model to generate prediction data along with the original input data, and finally save all the data into a S3 bucket. The following diagram illustrates the architecture of the solution.
+In this repo, I will show you step by step about how to host a machine learning model on a SageMaker endpoint, then create batch and near real-time streaming Glue jobs to invoke the machine learning model to generate prediction data along with the original input data, and finally save all the data into a S3 bucket. The following diagram illustrates the architecture of the solution.
 
 ![image](./solutions_architecture.png)
 
