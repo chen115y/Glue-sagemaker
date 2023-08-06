@@ -409,7 +409,7 @@ When a user is deleted, you lose access to the Amazon EFS volume that contains d
 5.	On the `Delete Studio` dialog, choose `Yes, delete Studio`, type _delete_ in the confirmation field, and then choose `Delete`.
 
 
-## Conclusion
+## Summary
 
 In this repo, you saw how to prepare your own ML endpoint running on SageMaker and create Glue batch and real-time streaming jobs to invoke the ML endpoint to add prediction results along with the original input data set. In this way, you enable a capability to build an analytics pipeline with a power of the machine learning (ML) by leveraging AWS Glue jobs and SageMaker ML endpoints. 
 
